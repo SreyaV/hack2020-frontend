@@ -6,6 +6,7 @@ from oauth2client import file, client, tools
 import os, csv, uuid
 
 from werkzeug.utils import secure_filename
+from Hack2020.music import parse_input, write_midi, process_midi
 
 UPLOAD_FOLDER = 'uploads'
 OUTPUT_FOLDER = 'output'
@@ -54,6 +55,10 @@ def upload_file():
             uuid_str = uuid.uuid1().hex
             filename = secure_filename(uuid_str + '.csv')
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            input_data = parse_input('uploads/' + uuid_str + '.csv')
+            output_file = 'output/' + uuid_str + '.midi'
+            write_midi(input_data, output_file)
+            process_midi(output_file, play=False, output_wav='output/' + uuid_str + '.wav')
             return redirect('/playback?uuid=' + uuid_str)
     return render_template("home.html")
 

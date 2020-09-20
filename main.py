@@ -58,7 +58,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             input_data = parse_input('uploads/' + uuid_str + '.csv')
             output_file = 'output/' + uuid_str + '.midi'
-            write_midi(input_data, output_file)
+            write_midi(input_data, output_file, mode=type_str)
             process_midi(output_file, play=False, output_wav='output/' + uuid_str + '.wav')
             return redirect('/playback?uuid=' + uuid_str)
     return render_template("home.html")

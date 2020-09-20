@@ -2,3 +2,6 @@
 *.wav
 *.csv
 *.midi
+
+# jetbrains ide
+.idea/

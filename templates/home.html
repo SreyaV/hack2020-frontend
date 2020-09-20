@@ -18,8 +18,14 @@
     <body>
 	<h1>Upload new File</h1>
 	    <form method=post enctype=multipart/form-data>
-	      <input type=file name=file>
-	      <input type=submit value=Upload>
+		    How would you like your data to be converted to audio?<br>
+		    <input type="radio" name="type" value="pitch">Vary pitch (1D data only)<br>
+  <input type="radio" name="type" value="both">Vary pitch and volume (2D data only) <br>
+  <input type="radio" name="type" value="volume">Vary volume (1D - 6D data) <br>
+  <br>
+  Upload a CSV with your data (each column should correspond to a different feature):<br> 
+  <input type=file name=file><br><br>
+	      <input type=submit value=Play>
 	    </form>
     </body>
 

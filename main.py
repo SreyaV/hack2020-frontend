@@ -2,7 +2,6 @@ from flask import Flask, flash, request, redirect, url_for, render_template, sen
 import datetime
 from googleapiclient.discovery import build
 from httplib2 import Http
-from oauth2client import file, client, tools
 import os, csv, uuid
 
 from werkzeug.utils import secure_filename
@@ -41,6 +40,8 @@ def play_wav():
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
+        type_str = request.form.get('type')
+        print(type_str)
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
